@@ -488,6 +488,35 @@ window.addEventListener('pjax:success', () => {
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: true,
+      notify: true,
+      appId: 'R2YXHbq7T1J5GpRdg7A6q8Nf-9Nh9j0Va',
+      appKey: '4FHLJvUNg7NyPtLgfpn1r2Sm',
+      placeholder: "在此处留言,请一并在右上方留下邮箱,方便联系",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
     </div>
 </body>
 </html>
